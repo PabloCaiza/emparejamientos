@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{css/bootstrap.min.css}"  rel="stylesheet" >
+
+</head>
+<body>
+<div class="row">
+    <div class="col-4">
+        <div th:include="dashboard"/>
+    </div>
+    <div class="col">
+        <div class="container" style="margin-top: 10% ;overflow: scroll;height: 80vh">
+            <form method="post" th:action="@{/calculatePairing}">
+                <button type="submit" class="btn btn-primary">Emparejar</button>
+            </form>
+            </br>
+            <p th:text="${error}" class="text-danger"/>
+            <div th:each="r:${rounds}">
+                <span class="h3"> Ronda #</span>
+                <span  class="h3" th:text="${r.number}"/>
+                <br/>
+                <div class="row container"  th:each="p: ${r.pairings}">
+                    <div class="col">
+                        <div class="card border-dark mb-3" style="max-width: 18rem;">
+                            <div class="card-header">
+                                <span   >Machamo #</span>
+                                <span   th:text="${p.rival1.marchamo}"/>
+                            </div>
+                            <div class="card-body text-dark">
+                                <span  class="h6" >Nombre del Equipo:</span>
+                                <span class="card-title h6" th:text=" ${p.rival1.name}"  />
+                                <br/>
+                                <span   >Machamo #</span>
+                                <span   th:text="${p.rival1.marchamo}"/>
+                                <br/>
+                                <span   >Grupo :</span>
+                                <span   th:text="${p.rival1.team}"/>
+                                <br/>
+                                <span >Peso:</span>
+                                <span class="card-text " th:text="${p.rival1.weight}" />
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col ">
+                        <img th:src="@{images/vs.png} " width="100px" height="100px" style="margin: auto;display: block"/>
+                    </div>
+
+                    <div class="col">
+                        <div class="card border-dark mb-3" style="max-width: 18rem;">
+                            <div class="card-header">
+                                <span   >Machamo #</span>
+                                <span   th:text="${p.rival2.marchamo}"/>
+                            </div>
+                            <div class="card-body text-dark">
+                                <span  class="h6" >Nombre del Equipo:</span>
+                                <span class="card-title h6" th:text=" ${p.rival2.name}"  />
+                                <br/>
+                                <span   >Machamo #</span>
+                                <span   th:text="${p.rival2.marchamo}"/>
+                                <br/>
+                                <span   >Grupo :</span>
+                                <span   th:text="${p.rival2.team}"/>
+                                <br/>
+                                <span >Peso:</span>
+                                <span class="card-text " th:text="${p.rival2.weight}" />
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
